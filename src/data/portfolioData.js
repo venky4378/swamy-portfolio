@@ -4,7 +4,7 @@ export const personalInfo = {
   title: "Java Backend & Full Stack Engineer",
   location: "Hyderabad, India",
   phone: "+91 6309736330",
-  email: "venkyswamy437@gmail.com",
+  email: "venkayyaswamychamanthi@gmail.com",
   github: "https://github.com/venky4378",
   linkedin: "https://www.linkedin.com/in/swamy-ch",
   bio: "Java Backend Developer and 2026 Computer Science (Data Science) graduate with hands-on internship experience in Java Full Stack development. Experienced in building high-throughput microservices with Kafka, RESTful APIs, Spring Security RBAC, and AI-powered document retrieval using Spring AI & PGVector.",
