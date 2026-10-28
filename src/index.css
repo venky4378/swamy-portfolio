@@ -3,7 +3,7 @@
 
 @layer base {
   body {
-    background-color: #090d16;
+    background-color: #030712;
     color: #e2e8f0;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
@@ -15,52 +15,58 @@
   }
 }
 
-/* Luxury Corporate Dark Cards */
+/* Deep Pure Black to Sapphire / Navy Blue Radial Gradient Canvas */
+.bg-black-blue-gradient {
+  background: radial-gradient(circle at 50% 0%, #0a1738 0%, #050d21 35%, #020611 70%, #000207 100%);
+  background-attachment: fixed;
+}
+
+/* Translucent Obsidian Glass Cards with Subtle Blue Borders */
 .glass-card {
-  background: rgba(15, 23, 42, 0.70);
+  background: rgba(4, 9, 23, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(30, 58, 138, 0.35);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.6);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(18, 28, 51, 0.85);
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.18);
+  background: rgba(6, 15, 38, 0.88);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.25);
 }
 
-/* Subtle, Tasteful Executive Text Gradients */
+/* Sophisticated Typography Gradients */
 .text-gradient {
   background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-indigo {
-  background: linear-gradient(135deg, #818cf8 0%, #a5b4fc 100%);
+.text-gradient-blue {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-cyan {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Custom Minimalist Dark Scrollbar */
+/* Custom Minimalist Dark Blue Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #020611;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #0f1f47;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #1e3a8a;
 }

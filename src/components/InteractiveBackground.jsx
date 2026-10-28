@@ -13,7 +13,7 @@ export default function InteractiveBackground() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Smooth lag/spring effect for secondary cursor aura
+  // Smooth fluid cursor aura
   useEffect(() => {
     let animationFrameId;
     const followCursor = () => {
@@ -30,46 +30,47 @@ export default function InteractiveBackground() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* 1. Deep Mesh Gradient Aurora Background */}
-      <div className="absolute inset-0 bg-[#030712]" />
+      {/* 1. Deep Midnight Black Canvas */}
+      <div className="absolute inset-0 bg-[#020611]" />
 
-      {/* 2. Floating Ambient Glow Orbs (Subtle Breathing Animations) */}
-      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-transparent rounded-full blur-[130px] animate-pulse duration-1000" />
-      <div className="absolute top-1/3 -right-40 w-[650px] h-[650px] bg-gradient-to-bl from-cyan-600/15 via-blue-600/10 to-transparent rounded-full blur-[140px]" />
-      <div className="absolute -bottom-40 left-1/3 w-[550px] h-[550px] bg-gradient-to-t from-purple-700/15 via-indigo-600/10 to-transparent rounded-full blur-[130px]" />
+      {/* 2. Heavy, Rich Sapphire & Royal Blue Aurora Bloom */}
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1000px] h-[650px] bg-gradient-to-b from-blue-700/35 via-blue-900/25 to-transparent rounded-full blur-[140px]" />
+      <div className="absolute top-1/3 -left-48 w-[750px] h-[750px] bg-gradient-to-r from-blue-600/25 via-indigo-900/20 to-transparent rounded-full blur-[150px]" />
+      <div className="absolute top-2/3 -right-48 w-[800px] h-[800px] bg-gradient-to-l from-blue-700/25 via-blue-950/20 to-transparent rounded-full blur-[150px]" />
+      <div className="absolute -bottom-48 left-1/3 w-[700px] h-[700px] bg-gradient-to-t from-blue-600/20 via-sky-900/15 to-transparent rounded-full blur-[140px]" />
 
-      {/* 3. Subtle Cybernetic Dot Grid Overlay */}
+      {/* 3. Subtle Cybernetic Dot Grid */}
       <div
-        className="absolute inset-0 opacity-[0.14]"
+        className="absolute inset-0 opacity-[0.16]"
         style={{
-          backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px)`,
-          backgroundSize: "28px 28px"
+          backgroundImage: `radial-gradient(rgba(96, 165, 250, 0.45) 1px, transparent 1px)`,
+          backgroundSize: "32px 32px"
         }}
       />
 
-      {/* 4. Primary Interactive Spotlight that follows the mouse instantly */}
+      {/* 4. Primary Interactive Dynamic Blue Spotlight */}
       <div
-        className="absolute w-[450px] h-[450px] rounded-full pointer-events-none transition-opacity duration-300 -translate-x-1/2 -translate-y-1/2 blur-[80px]"
+        className="absolute w-[500px] h-[500px] rounded-full pointer-events-none transition-opacity duration-300 -translate-x-1/2 -translate-y-1/2 blur-[90px]"
         style={{
           left: `${mousePos.x}px`,
           top: `${mousePos.y}px`,
-          background: "radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.10) 40%, transparent 75%)"
+          background: "radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, rgba(29, 78, 216, 0.16) 45%, transparent 75%)"
         }}
       />
 
-      {/* 5. Secondary Trailing Ambient Aura with Spring Lag */}
+      {/* 5. Trailing Sky Blue Fluid Aura */}
       <div
-        className="absolute w-[320px] h-[320px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 blur-[60px]"
+        className="absolute w-[340px] h-[340px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 blur-[70px]"
         style={{
           left: `${trailPos.x}px`,
           top: `${trailPos.y}px`,
-          background: "radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 80%)"
+          background: "radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(37, 99, 235, 0.10) 50%, transparent 80%)"
         }}
       />
 
       {/* 6. Precision Micro-Cursor Ring */}
       <div
-        className="fixed w-4 h-4 rounded-full border border-indigo-400/40 pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 hidden md:block"
+        className="fixed w-4 h-4 rounded-full border border-blue-400/50 pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 hidden md:block"
         style={{
           left: `${mousePos.x}px`,
           top: `${mousePos.y}px`
