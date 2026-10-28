@@ -1,10 +1,10 @@
 import React from "react";
 import { personalInfo } from "../data/portfolioData";
-import { ArrowRight, Mail, Database, Server, Cpu, Sparkles, Terminal, Code2 } from "lucide-react";
+import { ArrowRight, Mail, Database, Server, Cpu, Sparkles, Terminal, Code2, Download, Eye } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import profileImg from "../assets/profile.jpg";
 
-export default function Hero() {
+export default function Hero({ onOpenResume }) {
   return (
     <section id="about" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden w-full">
       <div className="w-full px-6 sm:px-10 lg:px-16 relative z-10">
@@ -41,20 +41,31 @@ export default function Hero() {
               Hi, I'm <span className="text-white font-semibold">{personalInfo.name}</span>. A Java Backend Developer and 2026 graduate specializing in robust, high-throughput microservices using <span className="text-white font-medium bg-blue-950/70 px-2 py-0.5 rounded border border-blue-800/60">Spring Boot</span>, distributed event streaming with <span className="text-white font-medium bg-blue-950/70 px-2 py-0.5 rounded border border-blue-800/60">Apache Kafka</span>, and enterprise AI RAG pipelines with <span className="text-white font-medium bg-blue-950/70 px-2 py-0.5 rounded border border-blue-800/60">Spring AI &amp; PGVector</span>.
             </p>
 
-            {/* Action Buttons */}
+            {/* Action Buttons: Includes View Resume and Download */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-sm shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 active:translate-y-0 transition-all group"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-sm shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 active:translate-y-0 transition-all group"
               >
                 Explore Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl glass-card text-slate-200 font-semibold text-sm hover:text-white hover:bg-blue-950/70 hover:border-blue-600 active:scale-[0.98] transition-all"
+              {/* View Resume Button */}
+              <button
+                onClick={onOpenResume}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-blue-500/40 bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 font-semibold text-sm transition-all hover:-translate-y-0.5 active:scale-95 shadow-lg shadow-blue-950/50 cursor-pointer"
               >
-                <Mail className="w-4 h-4 text-blue-400" /> Contact Me
+                <Eye className="w-4 h-4 text-blue-400" /> View Resume
+              </button>
+
+              {/* Download Resume Button */}
+              <a
+                href="/Venkayya_Swamy_Resume.pdf"
+                download="Venkayya_Swamy_Resume.pdf"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl glass-card text-slate-200 font-semibold text-sm hover:text-white hover:bg-blue-950/70 hover:border-blue-600 active:scale-[0.98] transition-all"
+                title="Download PDF"
+              >
+                <Download className="w-4 h-4 text-blue-400" /> Download CV
               </a>
             </div>
 

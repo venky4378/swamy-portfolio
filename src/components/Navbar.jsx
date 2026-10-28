@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { personalInfo } from "../data/portfolioData";
-import { Terminal, Mail, Menu, X, FileText } from "lucide-react";
+import { Terminal, Mail, Menu, X, FileText, Download, Eye } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 
-export default function Navbar() {
+export default function Navbar({ onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -58,8 +58,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right CTA / Socials / Resume */}
-        <div className="hidden md:flex items-center gap-3.5">
+        {/* Right CTA / Socials / Resume Actions */}
+        <div className="hidden md:flex items-center gap-3">
           <a
             href={personalInfo.github}
             target="_blank"
@@ -79,19 +79,23 @@ export default function Navbar() {
             <LinkedinIcon className="w-5 h-5" />
           </a>
 
-          {/* Direct Resume Action */}
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 text-xs font-semibold text-blue-300 transition-all"
+          {/* View Resume Button (Opens Modal) */}
+          <button
+            onClick={onOpenResume}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-blue-500/40 bg-blue-500/10 hover:bg-blue-500/20 text-xs font-semibold text-blue-300 transition-all shadow-sm cursor-pointer"
+            title="View Resume in Browser"
           >
-            <FileText className="w-3.5 h-3.5" /> Resume
-          </a>
+            <Eye className="w-3.5 h-3.5" /> View Resume
+          </button>
 
+          {/* Direct Download Button */}
           <a
-            href="#contact"
-            className="text-xs font-semibold px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 active:scale-95 transition-all"
+            href="/Venkayya_Swamy_Resume.pdf"
+            download="Venkayya_Swamy_Resume.pdf"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/30 active:scale-95 transition-all"
+            title="Download PDF"
           >
-            Hire Me
+            <Download className="w-3.5 h-3.5" /> Download
           </a>
         </div>
 
@@ -117,24 +121,22 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <div className="pt-4 border-t border-blue-900/50 flex items-center justify-between">
-            <div className="flex gap-4">
-              <a href={personalInfo.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white">
-                <GithubIcon className="w-5 h-5" />
-              </a>
-              <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white">
-                <LinkedinIcon className="w-5 h-5" />
-              </a>
-              <a href={`mailto:${personalInfo.email}`} className="text-slate-400 hover:text-white">
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xs font-semibold px-4 py-2 rounded-lg bg-blue-600 text-white"
+          <div className="pt-4 border-t border-blue-900/50 flex flex-col gap-3">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenResume();
+              }}
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl border border-blue-500/40 bg-blue-500/10 text-xs font-semibold text-blue-300"
             >
-              Hire Me
+              <Eye className="w-4 h-4" /> View Resume
+            </button>
+            <a
+              href="/Venkayya_Swamy_Resume.pdf"
+              download="Venkayya_Swamy_Resume.pdf"
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold"
+            >
+              <Download className="w-4 h-4" /> Download Resume PDF
             </a>
           </div>
         </div>
