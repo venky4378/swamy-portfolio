@@ -5,7 +5,13 @@ import { GithubIcon, LinkedinIcon } from "./Icons";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalInfo.email);
@@ -13,10 +19,24 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 4000);
+    
+    // Construct real pre-filled mailto URL with recruiter's inputs
+    const emailSubject = encodeURIComponent(formData.subject || `Inquiry from ${formData.name}`);
+    const emailBody = encodeURIComponent(
+      `Hello Venkayya Swamy,\n\n${formData.message}\n\nBest regards,\n${formData.name}\nEmail: ${formData.email}`
+    );
+    
+    // Opens HR / Recruiter's email client directly pre-addressed to you
+    window.location.href = `mailto:${personalInfo.email}?subject=${emailSubject}&body=${emailBody}`;
+    
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
@@ -108,7 +128,7 @@ export default function Contact() {
           <div className="lg:col-span-7 glass-card rounded-2xl p-8 border border-blue-900/50 text-left">
             <h3 className="text-xl font-bold text-white mb-2">Send an Inquiry</h3>
             <p className="text-xs sm:text-sm text-slate-400 mb-6">
-              Drop a note or interview invitation and I will reply as soon as possible.
+              Fill in your details below to directly dispatch an inquiry to my inbox.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -117,8 +137,11 @@ export default function Contact() {
                   <label className="block text-xs font-semibold text-slate-300 mb-1.5 font-mono">Your Name</label>
                   <input
                     type="text"
+                    name="name"
                     required
-                    placeholder="Recruiter or Engineering Lead"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Recruiter / Hiring Manager"
                     className="w-full px-4 py-3 rounded-xl bg-[#04091a] border border-blue-900/60 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
@@ -126,7 +149,10 @@ export default function Contact() {
                   <label className="block text-xs font-semibold text-slate-300 mb-1.5 font-mono">Your Email</label>
                   <input
                     type="email"
+                    name="email"
                     required
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="name@company.com"
                     className="w-full px-4 py-3 rounded-xl bg-[#04091a] border border-blue-900/60 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
@@ -137,8 +163,11 @@ export default function Contact() {
                 <label className="block text-xs font-semibold text-slate-300 mb-1.5 font-mono">Subject</label>
                 <input
                   type="text"
+                  name="subject"
                   required
-                  placeholder="Java Backend Developer Role / Opportunity"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Java Backend Developer Role"
                   className="w-full px-4 py-3 rounded-xl bg-[#04091a] border border-blue-900/60 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                 />
               </div>
@@ -147,16 +176,23 @@ export default function Contact() {
                 <label className="block text-xs font-semibold text-slate-300 mb-1.5 font-mono">Message</label>
                 <textarea
                   rows="4"
+                  name="message"
                   required
-                  placeholder="Hello Swamy, we reviewed your PG Finder and CognifyAI projects..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Hello Venkayya Swamy, we were impressed by your PG Finder and CognifyAI projects..."
                   className="w-full px-4 py-3 rounded-xl bg-[#04091a] border border-blue-900/60 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
                 ></textarea>
               </div>
 
               <div className="flex items-center justify-between pt-2">
-                {formSubmitted && (
-                  <span className="text-xs text-emerald-400 font-medium">
-                    Thank you! Message logged (demo mode). Feel free to email directly!
+                {submitted ? (
+                  <span className="text-xs text-emerald-400 font-medium flex items-center gap-1.5">
+                    <Check className="w-4 h-4" /> Opening email client with pre-filled message...
+                  </span>
+                ) : (
+                  <span className="text-xs text-slate-400 font-mono">
+                    Directly opens your mail app addressed to me
                   </span>
                 )}
                 <button
